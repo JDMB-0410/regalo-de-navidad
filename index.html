@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para ti, mi amor ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="assets/icon.png">
+    <link rel="apple-touch-icon" href="assets/icon.png">
+    <meta name="theme-color" content="#c2185b">
+</head>
+<body>
+
+    <div id="snow-container"></div>
+
+    <div class="main-container">
+        
+        <section id="screen1" class="screen active-screen">
+            <div class="envelope-icon">
+                <img src="assets/icon.png" alt="Corazón" class="main-logo">
+            </div>
+
+            <h1 class="title-font">Para mi persona favorita</h1>
+            <div class="card-info">
+                <p id="current-date" class="date-stamp"></p>
+                <p><strong>De:</strong> [J.David </p>
+                <p><strong>Para:</strong> Mi Niña Hermosa</p>
+                <div class="divider"></div>
+                <h2>🎄 10 Razones por las que te amo 🎄</h2>
+            </div>
+            <button class="btn" onclick="goToScreen(2)">Abrir Carta</button>
+        </section>
+
+        <section id="screen2" class="screen">
+            <h1 class="title-font">📜 Un pequeño poema...</h1>
+            <div class="poem-box">
+                <p>En esta noche de estrellas y paz,<br>
+                mi corazón late fuerte y capaz,<br>
+                de decirte a gritos lo que siento,<br>
+                eres mi vida, mi mejor momento.</p>
+                
+                <p>No necesito regalos bajo el árbol,<br>
+                pues tu amor es mi tesoro soñado.</p>
+            </div>
+            <button class="btn" onclick="goToScreen(3)">Ver las razones</button>
+        </section>
+
+        <section id="screen3" class="screen">
+            <h2 class="title-font">🔮 Tu Esfera Mágica</h2>
+            <p class="subtitle highlight" id="sphere-instruction">¡Toca la esfera para descubrir el mensaje!</p>
+
+            <div class="sphere-wrapper">
+                <div class="string"></div>
+                <div class="christmas-sphere luxurious-sphere" onclick="revealReason()">
+                    <div id="internal-snow-container"></div>
+                </div>
+            </div>
+
+            <div id="reason-conteiner" class="reason-box" style="opacity: 0;">
+                <p id="reason-text">...</p>
+            </div>
+
+            <button id="final-btn" class="btn hidden" onclick="goToScreen(4)">Siguiente ➡️</button>
+        </section>
+
+        <section id="screen4" class="screen">
+            <h1 class="title-font">🎅 Feliz Navidad 🤶</h1>
+            
+            <div class="photo-frame">
+                <img src="assets/nosotros.jpg" alt="Nosotros">
+            </div>
+
+            <div class="final-message">
+                <p>Feliz navidad a ti mi niña hermosa. Sin importar la distancia o el tiempo que nos aleje, tú eres mi calma en la tormenta.</p>
+                <p>La luz que me guía en mi más profunda oscuridad, el amor que nunca recibí pero tanto anhelaba.</p>
+                <p>Eres el amor de mi vida y sin importar lo que pase...</p>
+                <h3 class="highlight">JAMÁS dejaré de amarte.</h3>
+                <p class="signature">Es una promesa ❤️</p>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
