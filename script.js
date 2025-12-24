@@ -1,4 +1,4 @@
-// FECHA AUTOMÁTICA
+// FECHA
 function setDate() {
     const dateElement = document.getElementById('current-date');
     const now = new Date();
@@ -7,7 +7,7 @@ function setDate() {
 }
 setDate();
 
-// LISTA DE RAZONES
+// RAZONES
 const reasons = [
     "Amo tu humor y la forma en que me haces reír",
     "Amo tus ojos y como brillan de ilusión",
@@ -64,7 +64,7 @@ function createExternalHeart() {
     setTimeout(() => heart.remove(), 2000);
 }
 
-// LÓGICA AL PRESIONAR ESFERA
+// LÓGICA AL CLICK
 function revealReason() {
     const sphere = document.querySelector('.christmas-sphere');
     const textBox = document.getElementById('reason-text');
@@ -77,22 +77,17 @@ function revealReason() {
         isFirstClick = false;
     }
 
-    // Animación de agitar
     sphere.classList.remove('shake-anim');
     void sphere.offsetWidth; 
     sphere.classList.add('shake-anim');
 
-    // Disparar efectos
     for(let i=0; i<25; i++) { setTimeout(createInternalSnow, i * 30); }
     for(let i=0; i<8; i++) { setTimeout(createExternalHeart, i * 100); }
 
-    // Cambiar texto
     textContainer.style.opacity = 0;
-
     setTimeout(() => {
         textBox.innerHTML = `"${reasons[reasonIndex]}"`;
         textContainer.style.opacity = 1;
-
         reasonIndex++;
         if (reasonIndex >= reasons.length) {
             reasonIndex = 0;
@@ -107,7 +102,7 @@ function revealReason() {
     }, 300);
 }
 
-// NIEVE DE FONDO
+// NIEVE FONDO
 function createSnowflake() {
     const snowContainer = document.getElementById('snow-container');
     const snowflake = document.createElement('div');

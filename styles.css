@@ -14,7 +14,7 @@ body {
     margin: 0 0 15px 0;
 }
 
-/* CONTENEDOR PRINCIPAL */
+/* CONTENEDOR */
 .main-container {
     background: rgba(255, 255, 255, 0.97);
     width: 90%; max-width: 450px;
@@ -28,14 +28,13 @@ body {
     justify-content: center; align-items: center;
     max-height: 95vh; overflow-y: auto;
 }
-/* Decoraciones de esquina */
 .main-container::before, .main-container::after {
     content: '🎄🌿'; position: absolute; font-size: 2.5em; top: -15px; pointer-events: none;
 }
 .main-container::before { left: -10px; transform: rotate(-20deg); }
 .main-container::after { right: -10px; transform: rotate(20deg) scaleX(-1); }
 
-/* LOGO PRINCIPAL (CORAZÓN PALPITANTE) */
+/* LOGO DE PORTADA (Corazón) */
 .envelope-icon { margin-bottom: 10px; line-height: 0; }
 .main-logo {
     width: 100px; height: 100px;
@@ -44,12 +43,9 @@ body {
     animation: heartbeat 1.5s infinite ease-in-out;
 }
 @keyframes heartbeat {
-    0% { transform: scale(1); }
-    15% { transform: scale(1.15); }
-    30% { transform: scale(1); }
-    45% { transform: scale(1.15); }
-    60% { transform: scale(1); }
-    100% { transform: scale(1); }
+    0% { transform: scale(1); } 15% { transform: scale(1.15); }
+    30% { transform: scale(1); } 45% { transform: scale(1.15); }
+    60% { transform: scale(1); } 100% { transform: scale(1); }
 }
 
 /* TRANSICIONES */
@@ -57,7 +53,7 @@ body {
 .active-screen { display: block; animation: slideUpFade 0.8s forwards; }
 @keyframes slideUpFade { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-/* ELEMENTOS DE TEXTO */
+/* TEXTOS Y BOTONES */
 .divider { height: 3px; background: repeating-linear-gradient(45deg, #c0392b, #c0392b 10px, #f1c40f 10px, #f1c40f 20px); width: 60%; margin: 20px auto; border-radius: 5px;}
 .subtitle { color: #777; font-size: 1em; margin-bottom: 15px; }
 .highlight { color: #c0392b; font-weight: 700;}
@@ -65,51 +61,43 @@ body {
 .poem-box p { font-size: 1.1em; line-height: 1.5; color: #444; margin-bottom: 15px; font-weight: 500;}
 .date-stamp { font-family: 'Montserrat', sans-serif; color: #c0392b; font-weight: bold; margin-bottom: 20px; border-bottom: 2px solid #f1c40f; display: inline-block; padding-bottom: 5px; }
 .final-message p { font-size: 1em; margin: 8px 0; line-height: 1.4; font-weight: 500; }
+.btn { background: linear-gradient(45deg, #922b21, #c0392b); color: white; border: 2px solid #f1c40f; padding: 12px 35px; font-size: 1.1em; border-radius: 50px; cursor: pointer; margin-top: 25px; box-shadow: 0 5px 15px rgba(192, 57, 43, 0.4); transition: transform 0.2s; font-weight: bold; }
+.btn:hover { transform: scale(1.05); }
+.hidden { display: none; }
 
 /* FOTO */
 .photo-frame { width: 160px; height: 160px; margin: 0 auto 20px auto; border: 5px solid #c0392b; border-radius: 50%; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transform: rotate(-3deg); background-color: #eee; position: relative; }
 .photo-frame::after { content: '🎅'; position: absolute; top: -15px; right: 10px; font-size: 2.5em; z-index: 10; transform: rotate(15deg); }
 .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
 
-/* BOTONES */
-.btn { background: linear-gradient(45deg, #922b21, #c0392b); color: white; border: 2px solid #f1c40f; padding: 12px 35px; font-size: 1.1em; border-radius: 50px; cursor: pointer; margin-top: 25px; box-shadow: 0 5px 15px rgba(192, 57, 43, 0.4); transition: transform 0.2s; font-weight: bold; }
-.btn:hover { transform: scale(1.05); }
-.hidden { display: none; }
-
-/* --- ESFERA ROSA --- */
+/* ESFERA ROSA DE LUJO */
 .sphere-wrapper { position: relative; height: 230px; display: flex; justify-content: center; margin-bottom: 20px; perspective: 1000px; }
-/* Cuerda combinada con rosa oscuro */
 .string { width: 4px; height: 35px; background: repeating-linear-gradient(to bottom, #f1c40f, #f1c40f 5px, #c2185b 5px, #c2185b 10px); position: absolute; top: 0; z-index: 1; }
 .christmas-sphere { width: 200px; height: 200px; position: absolute; top: 30px; cursor: pointer; border-radius: 50%; animation: floatSphere 3s ease-in-out infinite; z-index: 5; overflow: hidden; }
 
-/* ESTILO LUJOSO ROSA */
 .luxurious-sphere {
-    /* Gradiente Rosa */
-    background: radial-gradient(circle at 30% 30%, #ffc6d9, #ff69b4, #ad1457 70%);
-    /* Borde Rosa Oscuro */
+    background: radial-gradient(circle at 30% 30%, #ffc6d9, #ff69b4, #ad1457 70%); /* Rosa */
     border: 5px solid #c2185b;
     box-shadow: 0 25px 50px rgba(0,0,0,0.5), inset 0 0 60px rgba(100, 0, 0, 0.8), inset 5px 5px 20px rgba(255, 255, 200, 0.5);
 }
 .luxurious-sphere::after { content: ''; position: absolute; top: 5%; left: 10%; width: 40%; height: 25%; background: rgba(255,255,255,0.6); border-radius: 50%; transform: rotate(-30deg); filter: blur(8px); pointer-events: none; }
 
-/* ANIMACIONES ESFERA */
+/* ANIMACIONES */
 @keyframes floatSphere { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-10px) rotate(2deg); } }
 .shake-anim { animation: shake 0.6s ease-in-out !important; }
 @keyframes shake { 0% { transform: rotate(0deg); } 20% { transform: rotate(15deg); } 40% { transform: rotate(-15deg); } 60% { transform: rotate(10deg); } 80% { transform: rotate(-5deg); } 100% { transform: rotate(0deg); } }
 
-/* NIEVE INTERNA */
+/* ELEMENTOS FLOTANTES */
 #internal-snow-container { position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; z-index: 10; }
 .internal-snowflake { position: absolute; color: white; top: -10px; text-shadow: 0 0 3px #fff; animation: fallInternal linear forwards; }
 @keyframes fallInternal { to { transform: translateY(220px); opacity: 0; } }
 
-/* CAJA DE TEXTO */
 .reason-box { min-height: 60px; margin-top: 20px; font-style: italic; color: #444; padding: 15px; background: rgba(241, 196, 15, 0.15); border: 2px solid #f1c40f; border-radius: 10px; width: 90%; transition: opacity 0.5s ease; }
 #reason-text { font-weight: 600; font-size: 1.2em; margin: 0;}
 
-/* NIEVE DE FONDO */
 .snowflake { position: absolute; top: -10px; color: white; opacity: 0.9; pointer-events: none; animation: fall linear forwards; text-shadow: 0 0 5px white; }
 @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
-/* CORAZONES FLOTANTES (ROJO INTENSO) */
+/* CORAZONES ROJOS */
 .floating-heart { position: absolute; color: #ff0000; font-size: 2rem; pointer-events: none; animation: floatUp 2s ease-out forwards; z-index: 100; text-shadow: 0 0 5px rgba(255,255,255,0.5); }
 @keyframes floatUp { 0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(-200px) scale(1.5) rotate(45deg); opacity: 0; } }
