@@ -36,7 +36,7 @@ function goToScreen(screenNumber) {
     }, 100);
 }
 
-// EFECTO NIEVE INTERNA
+// EFECTO NIEVE INTERNA (Dentro de la esfera)
 function createInternalSnow() {
     const container = document.getElementById('internal-snow-container');
     const snowflake = document.createElement('div');
@@ -107,7 +107,7 @@ function revealReason() {
     }, 300);
 }
 
-// NIEVE DE FONDO
+// NIEVE DE FONDO (Pantalla completa)
 function createSnowflake() {
     const snowContainer = document.getElementById('snow-container');
     const snowflake = document.createElement('div');

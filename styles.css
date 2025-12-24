@@ -3,7 +3,7 @@ body {
     margin: 0; padding: 0;
     font-family: 'Montserrat', sans-serif;
     background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
-    height: 100vh;
+    min-height: 100vh;
     display: flex; justify-content: center; align-items: center;
     overflow: hidden; color: #fff;
 }
@@ -41,15 +41,19 @@ body {
     width: 100px; height: 100px;
     object-fit: contain;
     filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.6));
+}
+
+/* Animación de latido específica */
+.heartbeat-icon {
     animation: heartbeat 1.5s infinite ease-in-out;
 }
+
 @keyframes heartbeat {
     0% { transform: scale(1); }
-    15% { transform: scale(1.15); }
-    30% { transform: scale(1); }
-    45% { transform: scale(1.15); }
-    60% { transform: scale(1); }
-    100% { transform: scale(1); }
+    14% { transform: scale(1.15); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.15); }
+    70% { transform: scale(1); }
 }
 
 /* TRANSICIONES */
@@ -66,31 +70,96 @@ body {
 .date-stamp { font-family: 'Montserrat', sans-serif; color: #c0392b; font-weight: bold; margin-bottom: 20px; border-bottom: 2px solid #f1c40f; display: inline-block; padding-bottom: 5px; }
 .final-message p { font-size: 1em; margin: 8px 0; line-height: 1.4; font-weight: 500; }
 
-/* FOTO */
+/* FOTO FINAL (Marco Circular) */
 .photo-frame { width: 160px; height: 160px; margin: 0 auto 20px auto; border: 5px solid #c0392b; border-radius: 50%; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transform: rotate(-3deg); background-color: #eee; position: relative; }
 .photo-frame::after { content: '🎅'; position: absolute; top: -15px; right: 10px; font-size: 2.5em; z-index: 10; transform: rotate(15deg); }
 .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
 
 /* BOTONES */
-.btn { background: linear-gradient(45deg, #922b21, #c0392b); color: white; border: 2px solid #f1c40f; padding: 12px 35px; font-size: 1.1em; border-radius: 50px; cursor: pointer; margin-top: 25px; box-shadow: 0 5px 15px rgba(192, 57, 43, 0.4); transition: transform 0.2s; font-weight: bold; }
+.btn { background: linear-gradient(45deg, #922b21, #c0392b); color: white; border: 2px solid #f1c40f; padding: 12px 35px; font-size: 1.1em; border-radius: 50px; cursor: pointer; margin-top: 25px; box-shadow: 0 5px 15px rgba(192, 57, 43, 0.4); transition: transform 0.2s; font-weight: bold; -webkit-tap-highlight-color: transparent; }
 .btn:hover { transform: scale(1.05); }
 .hidden { display: none; }
 
-/* --- ESFERA ROSA --- */
-.sphere-wrapper { position: relative; height: 230px; display: flex; justify-content: center; margin-bottom: 20px; perspective: 1000px; }
-/* Cuerda combinada con rosa oscuro */
-.string { width: 4px; height: 35px; background: repeating-linear-gradient(to bottom, #f1c40f, #f1c40f 5px, #c2185b 5px, #c2185b 10px); position: absolute; top: 0; z-index: 1; }
-.christmas-sphere { width: 200px; height: 200px; position: absolute; top: 30px; cursor: pointer; border-radius: 50%; animation: floatSphere 3s ease-in-out infinite; z-index: 5; overflow: hidden; }
-
-/* ESTILO LUJOSO ROSA */
-.luxurious-sphere {
-    /* Gradiente Rosa */
-    background: radial-gradient(circle at 30% 30%, #ffc6d9, #ff69b4, #ad1457 70%);
-    /* Borde Rosa Oscuro */
-    border: 5px solid #c2185b;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.5), inset 0 0 60px rgba(100, 0, 0, 0.8), inset 5px 5px 20px rgba(255, 255, 200, 0.5);
+/* --- ESFERA NAVIDEÑA (ROJA Y DORADA) --- */
+.sphere-wrapper { 
+    position: relative; 
+    height: 230px; 
+    display: flex; 
+    justify-content: center; 
+    margin-bottom: 20px; 
+    perspective: 1000px; 
 }
-.luxurious-sphere::after { content: ''; position: absolute; top: 5%; left: 10%; width: 40%; height: 25%; background: rgba(255,255,255,0.6); border-radius: 50%; transform: rotate(-30deg); filter: blur(8px); pointer-events: none; }
+
+.string { 
+    width: 4px; 
+    height: 35px; 
+    background: repeating-linear-gradient(to bottom, #f1c40f, #f1c40f 5px, #c2185b 5px, #c2185b 10px); 
+    position: absolute; 
+    top: 0; 
+    z-index: 1; 
+}
+
+/* Contenedor base de la esfera */
+.christmas-sphere { 
+    width: 200px; 
+    height: 200px; 
+    position: relative; /* Ajuste para que Flexbox la centre */
+    top: 30px; 
+    cursor: pointer; 
+    border-radius: 50%; 
+    animation: floatSphere 3s ease-in-out infinite; 
+    z-index: 5; 
+    overflow: hidden; 
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Diseño de la Esfera Lujosa */
+.luxurious-sphere {
+    /* Base Roja */
+    background: radial-gradient(circle at 30% 30%, #d32f2f, #c62828, #8e0000);
+    
+    /* Franjas doradas decorativas */
+    background-image: 
+        linear-gradient(to bottom, transparent 42%, rgba(255, 215, 0, 0.5) 42%, rgba(255, 215, 0, 0.5) 46%, transparent 46%),
+        linear-gradient(to bottom, transparent 54%, rgba(255, 215, 0, 0.5) 54%, rgba(255, 215, 0, 0.5) 58%, transparent 58%),
+        radial-gradient(circle at 30% 30%, #d32f2f, #c62828, #8e0000);
+
+    border: 3px solid #f1c40f;
+    box-shadow: 
+        0 20px 40px rgba(0,0,0,0.6),
+        inset 0 -15px 30px rgba(0,0,0,0.5),
+        inset 0 10px 20px rgba(255,255,255,0.3);
+}
+
+/* Brillo principal */
+.luxurious-sphere::after {
+    content: '';
+    position: absolute;
+    top: 8%;
+    left: 10%;
+    width: 35%;
+    height: 25%;
+    background: linear-gradient(to bottom right, rgba(255,255,255,0.8), rgba(255,255,255,0.1));
+    border-radius: 50%;
+    transform: rotate(-20deg);
+    filter: blur(4px);
+    pointer-events: none;
+    z-index: 15;
+}
+
+/* Brillo secundario pequeño */
+.sphere-shine {
+    position: absolute;
+    top: 25%;
+    right: 20%;
+    width: 15px;
+    height: 15px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 50%;
+    filter: blur(5px);
+    pointer-events: none;
+    z-index: 15;
+}
 
 /* ANIMACIONES ESFERA */
 @keyframes floatSphere { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-10px) rotate(2deg); } }
@@ -102,7 +171,7 @@ body {
 .internal-snowflake { position: absolute; color: white; top: -10px; text-shadow: 0 0 3px #fff; animation: fallInternal linear forwards; }
 @keyframes fallInternal { to { transform: translateY(220px); opacity: 0; } }
 
-/* CAJA DE TEXTO */
+/* CAJA DE TEXTO DE RAZONES */
 .reason-box { min-height: 60px; margin-top: 20px; font-style: italic; color: #444; padding: 15px; background: rgba(241, 196, 15, 0.15); border: 2px solid #f1c40f; border-radius: 10px; width: 90%; transition: opacity 0.5s ease; }
 #reason-text { font-weight: 600; font-size: 1.2em; margin: 0;}
 
@@ -110,6 +179,6 @@ body {
 .snowflake { position: absolute; top: -10px; color: white; opacity: 0.9; pointer-events: none; animation: fall linear forwards; text-shadow: 0 0 5px white; }
 @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
-/* CORAZONES FLOTANTES (ROJO INTENSO) */
+/* CORAZONES FLOTANTES */
 .floating-heart { position: absolute; color: #ff0000; font-size: 2rem; pointer-events: none; animation: floatUp 2s ease-out forwards; z-index: 100; text-shadow: 0 0 5px rgba(255,255,255,0.5); }
 @keyframes floatUp { 0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(-200px) scale(1.5) rotate(45deg); opacity: 0; } }
