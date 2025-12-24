@@ -1,204 +1,115 @@
-/* --- CONFIGURACIÓN GENERAL --- */
+/* GENERAL */
 body {
-    margin: 0;
-    padding: 0;
+    margin: 0; padding: 0;
     font-family: 'Montserrat', sans-serif;
     background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden; /* Evita scroll innecesario */
-    color: #fff;
+    height: 100vh;
+    display: flex; justify-content: center; align-items: center;
+    overflow: hidden; color: #fff;
 }
-
 .title-font {
     font-family: 'Great Vibes', cursive;
-    font-size: 2.5em;
-    color: #e74c3c;
-    text-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
-    margin: 10px 0;
+    font-size: 2.5em; color: #c0392b;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    margin: 0 0 15px 0;
 }
 
-/* --- CONTENEDOR PRINCIPAL --- */
+/* CONTENEDOR PRINCIPAL */
 .main-container {
-    background: rgba(255, 255, 255, 0.95);
-    width: 90%;
-    max-width: 450px; /* Un poco más estrecho para parecer carta */
-    padding: 30px;
-    border-radius: 20px;
-    text-align: center;
-    color: #333;
-    box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
-    position: relative;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /* Importante para móvil: altura flexible */
-    max-height: 90vh;
-    overflow-y: auto; /* Si el contenido es muy largo, permite scroll dentro de la carta */
+    background: rgba(255, 255, 255, 0.97);
+    width: 90%; max-width: 450px;
+    padding: 30px 20px; border-radius: 20px;
+    text-align: center; color: #333;
+    border: 4px dashed #c0392b;
+    box-shadow: 0 0 30px rgba(192, 57, 43, 0.3);
+    position: relative; z-index: 10;
+    min-height: 500px;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    max-height: 95vh; overflow-y: auto;
+}
+/* Decoraciones de esquina */
+.main-container::before, .main-container::after {
+    content: '🎄🌿'; position: absolute; font-size: 2.5em; top: -15px; pointer-events: none;
+}
+.main-container::before { left: -10px; transform: rotate(-20deg); }
+.main-container::after { right: -10px; transform: rotate(20deg) scaleX(-1); }
+
+/* LOGO PRINCIPAL (CORAZÓN PALPITANTE) */
+.envelope-icon { margin-bottom: 10px; line-height: 0; }
+.main-logo {
+    width: 100px; height: 100px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.6));
+    animation: heartbeat 1.5s infinite ease-in-out;
+}
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    15% { transform: scale(1.15); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.15); }
+    60% { transform: scale(1); }
+    100% { transform: scale(1); }
 }
 
-/* --- PANTALLAS --- */
-.screen {
-    display: none;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
+/* TRANSICIONES */
+.screen { display: none; opacity: 0; width: 100%; }
+.active-screen { display: block; animation: slideUpFade 0.8s forwards; }
+@keyframes slideUpFade { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-.active-screen {
-    display: block;
-    animation: slideUpFade 0.8s forwards;
-}
+/* ELEMENTOS DE TEXTO */
+.divider { height: 3px; background: repeating-linear-gradient(45deg, #c0392b, #c0392b 10px, #f1c40f 10px, #f1c40f 20px); width: 60%; margin: 20px auto; border-radius: 5px;}
+.subtitle { color: #777; font-size: 1em; margin-bottom: 15px; }
+.highlight { color: #c0392b; font-weight: 700;}
+.signature { font-style: italic; margin-top: 5px; color: #555; }
+.poem-box p { font-size: 1.1em; line-height: 1.5; color: #444; margin-bottom: 15px; font-weight: 500;}
+.date-stamp { font-family: 'Montserrat', sans-serif; color: #c0392b; font-weight: bold; margin-bottom: 20px; border-bottom: 2px solid #f1c40f; display: inline-block; padding-bottom: 5px; }
+.final-message p { font-size: 1em; margin: 8px 0; line-height: 1.4; font-weight: 500; }
 
-@keyframes slideUpFade {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+/* FOTO */
+.photo-frame { width: 160px; height: 160px; margin: 0 auto 20px auto; border: 5px solid #c0392b; border-radius: 50%; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transform: rotate(-3deg); background-color: #eee; position: relative; }
+.photo-frame::after { content: '🎅'; position: absolute; top: -15px; right: 10px; font-size: 2.5em; z-index: 10; transform: rotate(15deg); }
+.photo-frame img { width: 100%; height: 100%; object-fit: cover; }
 
-/* --- ELEMENTOS DE DISEÑO --- */
-.envelope-icon { font-size: 4em; margin-bottom: 5px; }
-.divider { height: 2px; background: #e74c3c; width: 50px; margin: 15px auto; }
-.subtitle { color: #777; font-size: 0.9em; margin-bottom: 15px; }
-.poem-box, .final-message { font-size: 1em; line-height: 1.5; color: #444; }
-.highlight { color: #c0392b; font-weight: 700; margin-top: 15px;}
-
-/* --- BOTONES --- */
-.btn {
-    background: linear-gradient(45deg, #c0392b, #e74c3c);
-    color: white;
-    border: none;
-    padding: 12px 0;
-    width: 100%;
-    font-size: 1em;
-    border-radius: 50px;
-    cursor: pointer;
-    margin-top: 20px;
-    box-shadow: 0 5px 15px rgba(192, 57, 43, 0.4);
-    transition: transform 0.2s;
-    font-weight: bold;
-    -webkit-tap-highlight-color: transparent; 
-}
-
-.btn:hover { transform: scale(1.02); }
+/* BOTONES */
+.btn { background: linear-gradient(45deg, #922b21, #c0392b); color: white; border: 2px solid #f1c40f; padding: 12px 35px; font-size: 1.1em; border-radius: 50px; cursor: pointer; margin-top: 25px; box-shadow: 0 5px 15px rgba(192, 57, 43, 0.4); transition: transform 0.2s; font-weight: bold; }
+.btn:hover { transform: scale(1.05); }
 .hidden { display: none; }
 
-/* --- LA ESFERA (CORREGIDA) --- */
-.sphere-wrapper {
-    position: relative;
-    /* Usamos Flexbox para centrar sin usar coordenadas absolutas problemáticas */
-    display: flex; 
-    justify-content: center; 
-    align-items: center;
-    height: 160px; /* Altura reservada para la esfera */
-    margin-top: 10px;
-}
+/* --- ESFERA ROSA --- */
+.sphere-wrapper { position: relative; height: 230px; display: flex; justify-content: center; margin-bottom: 20px; perspective: 1000px; }
+/* Cuerda combinada con rosa oscuro */
+.string { width: 4px; height: 35px; background: repeating-linear-gradient(to bottom, #f1c40f, #f1c40f 5px, #c2185b 5px, #c2185b 10px); position: absolute; top: 0; z-index: 1; }
+.christmas-sphere { width: 200px; height: 200px; position: absolute; top: 30px; cursor: pointer; border-radius: 50%; animation: floatSphere 3s ease-in-out infinite; z-index: 5; overflow: hidden; }
 
-.string {
-    width: 2px;
-    height: 60px; /* Hilo más largo */
-    background: #f1c40f;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%); /* Centrado perfecto */
-    z-index: 1;
+/* ESTILO LUJOSO ROSA */
+.luxurious-sphere {
+    /* Gradiente Rosa */
+    background: radial-gradient(circle at 30% 30%, #ffc6d9, #ff69b4, #ad1457 70%);
+    /* Borde Rosa Oscuro */
+    border: 5px solid #c2185b;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5), inset 0 0 60px rgba(100, 0, 0, 0.8), inset 5px 5px 20px rgba(255, 255, 200, 0.5);
 }
+.luxurious-sphere::after { content: ''; position: absolute; top: 5%; left: 10%; width: 40%; height: 25%; background: rgba(255,255,255,0.6); border-radius: 50%; transform: rotate(-30deg); filter: blur(8px); pointer-events: none; }
 
-.christmas-sphere {
-    width: 120px;
-    height: 120px;
-    background: #c0392b; /* Fondo rojo por si falla la carga */
-    border-radius: 50%;
-    position: relative; /* Relative para que respete el flujo */
-    top: 20px; /* Bajarla un poco para que cuelgue del hilo */
-    z-index: 2;
-    cursor: pointer;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    border: 3px solid #fff;
-    overflow: hidden; /* Recorta la foto en círculo */
-    animation: floatSphere 3s ease-in-out infinite;
-    -webkit-tap-highlight-color: transparent;
-}
+/* ANIMACIONES ESFERA */
+@keyframes floatSphere { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-10px) rotate(2deg); } }
+.shake-anim { animation: shake 0.6s ease-in-out !important; }
+@keyframes shake { 0% { transform: rotate(0deg); } 20% { transform: rotate(15deg); } 40% { transform: rotate(-15deg); } 60% { transform: rotate(10deg); } 80% { transform: rotate(-5deg); } 100% { transform: rotate(0deg); } }
 
-.sphere-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* La foto cubre todo el círculo sin deformarse */
-    display: block;
-}
+/* NIEVE INTERNA */
+#internal-snow-container { position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; z-index: 10; }
+.internal-snowflake { position: absolute; color: white; top: -10px; text-shadow: 0 0 3px #fff; animation: fallInternal linear forwards; }
+@keyframes fallInternal { to { transform: translateY(220px); opacity: 0; } }
 
-.christmas-sphere:active { transform: scale(0.95); }
+/* CAJA DE TEXTO */
+.reason-box { min-height: 60px; margin-top: 20px; font-style: italic; color: #444; padding: 15px; background: rgba(241, 196, 15, 0.15); border: 2px solid #f1c40f; border-radius: 10px; width: 90%; transition: opacity 0.5s ease; }
+#reason-text { font-weight: 600; font-size: 1.2em; margin: 0;}
 
-.sparkle {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 1.5em;
-    animation: twinkle 2s infinite;
-    pointer-events: none;
-    text-shadow: 0 0 5px yellow;
-}
+/* NIEVE DE FONDO */
+.snowflake { position: absolute; top: -10px; color: white; opacity: 0.9; pointer-events: none; animation: fall linear forwards; text-shadow: 0 0 5px white; }
+@keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
-@keyframes floatSphere {
-    0%, 100% { transform: rotate(0deg); }
-    50% { transform: rotate(3deg); } /* Balanceo suave */
-}
-
-@keyframes twinkle {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.8); }
-}
-
-.shake-anim {
-    animation: shake 0.5s ease-in-out !important;
-}
-
-@keyframes shake {
-    0% { transform: rotate(0deg); }
-    25% { transform: rotate(10deg); }
-    50% { transform: rotate(-10deg); }
-    75% { transform: rotate(5deg); }
-    100% { transform: rotate(0deg); }
-}
-
-.reason-box {
-    min-height: 60px;
-    margin-top: 25px;
-    font-style: italic;
-    color: #555;
-    padding: 0 10px;
-}
-
-/* --- NIEVE DE FONDO --- */
-.snowflake {
-    position: absolute;
-    top: -10px;
-    color: white;
-    font-size: 1em;
-    opacity: 0.8;
-    pointer-events: none;
-    animation: fall linear forwards; 
-}
-
-@keyframes fall {
-    to { transform: translateY(110vh); }
-}
-
-/* --- MÓVIL --- */
-@media (max-width: 600px) {
-    .main-container {
-        width: 85%;
-        padding: 20px;
-    }
-    
-    .title-font { font-size: 2em; }
-    
-    .sphere-wrapper { height: 140px; }
-    
-    .christmas-sphere {
-        width: 100px;
-        height: 100px;
-    }
-}
+/* CORAZONES FLOTANTES (ROJO INTENSO) */
+.floating-heart { position: absolute; color: #ff0000; font-size: 2rem; pointer-events: none; animation: floatUp 2s ease-out forwards; z-index: 100; text-shadow: 0 0 5px rgba(255,255,255,0.5); }
+@keyframes floatUp { 0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(-200px) scale(1.5) rotate(45deg); opacity: 0; } }

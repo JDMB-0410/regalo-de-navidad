@@ -1,79 +1,123 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>Para ti, mi amor ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/png" href="assets/icon.png">
-</head>
-<body>
+// FECHA AUTOMÁTICA
+function setDate() {
+    const dateElement = document.getElementById('current-date');
+    const now = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    dateElement.innerText = "📅 " + now.toLocaleDateString('es-ES', options);
+}
+setDate();
 
-    <div id="snow-container"></div>
+// LISTA DE RAZONES
+const reasons = [
+    "Amo tu humor y la forma en que me haces reír",
+    "Amo tus ojos y como brillan de ilusión",
+    "Amo tus manos y como al tomarlas, no quiero soltarlas",
+    "Amo tus abrazos, en ellos el mundo se calma",
+    "Amo tu voz, es mi melodía favorita",
+    "Amo tus besos, me llevan a las nubes",
+    "Amo tu forma de ser, eres increíble siendo tú",
+    "Amo tu mente, reflejo de lo única que eres",
+    "Amo tu resiliencia, jamás te rindes",
+    "Amo tenerte en mi vida, la haces perfecta"
+];
 
-    <div class="main-container">
-        
-        <section id="screen1" class="screen active-screen">
-            <div class="envelope-icon">💌</div>
-            <h1 class="title-font">Para mi persona favorita</h1>
-            
-            <div class="card-info">
-                <p><strong>De:</strong> [Tu Nombre]</p>
-                <p><strong>Para:</strong> Mi Niña Hermosa</p>
-                <div class="divider"></div>
-                <h2>10 Razones por las que te amo</h2>
-            </div>
-            
-            <button class="btn" onclick="goToScreen(2)">Abrir Carta</button>
-        </section>
+let reasonIndex = 0;
+let hasFinished = false;
+let isFirstClick = true;
 
-        <section id="screen2" class="screen">
-            <h1 class="title-font">Un pequeño poema...</h1>
-            <div class="poem-box">
-                <p>En esta noche de estrellas y paz,<br>
-                mi corazón late fuerte y capaz,<br>
-                de decirte a gritos lo que siento,<br>
-                eres mi vida, mi mejor momento.</p>
-                
-                <p>No necesito regalos bajo el árbol,<br>
-                pues tu amor es mi tesoro soñado.</p>
-            </div>
-            <button class="btn" onclick="goToScreen(3)">Ver las razones</button>
-        </section>
+// NAVEGACIÓN
+function goToScreen(screenNumber) {
+    document.querySelectorAll('.screen').forEach(screen => {
+        screen.classList.remove('active-screen');
+    });
+    setTimeout(() => {
+        const nextScreen = document.getElementById('screen' + screenNumber);
+        if (nextScreen) nextScreen.classList.add('active-screen');
+    }, 100);
+}
 
-        <section id="screen3" class="screen">
-            <h2 class="title-font">Toca nuestra esfera</h2>
-            <p class="subtitle">Descubre por qué eres el amor de mi vida</p>
+// EFECTO NIEVE INTERNA
+function createInternalSnow() {
+    const container = document.getElementById('internal-snow-container');
+    const snowflake = document.createElement('div');
+    snowflake.classList.add('internal-snowflake');
+    snowflake.innerHTML = '•'; 
+    snowflake.style.left = Math.random() * 100 + '%';
+    snowflake.style.fontSize = (Math.random() * 12 + 6) + 'px';
+    snowflake.style.animationDuration = (Math.random() * 1 + 0.5) + 's';
+    container.appendChild(snowflake);
+    setTimeout(() => snowflake.remove(), 1500);
+}
 
-            <div class="sphere-wrapper">
-                <div class="string"></div>
-                <div class="christmas-sphere" onclick="revealReason()">
-                    <img src="assets/nosotros.jpg" alt="Foto de nosotros" class="sphere-photo">
-                    <span class="sparkle">✨</span>
-                </div>
-            </div>
+// EFECTO CORAZONES EXTERNOS
+function createExternalHeart() {
+    const heart = document.createElement('div');
+    heart.innerHTML = '❤️';
+    heart.classList.add('floating-heart');
+    const sphere = document.querySelector('.christmas-sphere');
+    const rect = sphere.getBoundingClientRect();
+    const x = rect.left + (rect.width / 2) + (Math.random() * 60 - 30); 
+    const y = rect.top + (rect.height / 2) + (Math.random() * 40 - 20);
+    heart.style.left = `${x}px`;
+    heart.style.top = `${y}px`;
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 2000);
+}
 
-            <div id="reason-conteiner" class="reason-box">
-                <p id="reason-text">Presiona la foto...</p>
-            </div>
+// LÓGICA AL PRESIONAR ESFERA
+function revealReason() {
+    const sphere = document.querySelector('.christmas-sphere');
+    const textBox = document.getElementById('reason-text');
+    const textContainer = document.getElementById('reason-conteiner');
+    const instruction = document.getElementById('sphere-instruction');
 
-            <button id="final-btn" class="btn hidden" onclick="goToScreen(4)">Siguiente ➡️</button>
-        </section>
+    if(isFirstClick) {
+        instruction.innerHTML = "¡Sigue agitando para descubrir más! ✨";
+        instruction.classList.remove('highlight');
+        isFirstClick = false;
+    }
 
-        <section id="screen4" class="screen">
-            <h1 class="title-font">Feliz Navidad</h1>
-            <div class="final-message">
-                <p>Feliz navidad a ti mi niña hermosa. Sin importar la distancia o el tiempo que nos aleje, tú eres mi calma en la tormenta.</p>
-                <p>Eres la luz que me guía en mi más profunda oscuridad, el amor que nunca recibí pero tanto anhelaba.</p>
-                <p>Eres el amor de mi vida y sin importar lo que pase...</p>
-                <h3 class="highlight">JAMÁS dejaré de amarte.</h3>
-                <p class="signature">Es una promesa ❤️</p>
-            </div>
-        </section>
+    // Animación de agitar
+    sphere.classList.remove('shake-anim');
+    void sphere.offsetWidth; 
+    sphere.classList.add('shake-anim');
 
-    </div>
+    // Disparar efectos
+    for(let i=0; i<25; i++) { setTimeout(createInternalSnow, i * 30); }
+    for(let i=0; i<8; i++) { setTimeout(createExternalHeart, i * 100); }
 
-    <script src="script.js"></script>
-</body>
-</html>
+    // Cambiar texto
+    textContainer.style.opacity = 0;
+
+    setTimeout(() => {
+        textBox.innerHTML = `"${reasons[reasonIndex]}"`;
+        textContainer.style.opacity = 1;
+
+        reasonIndex++;
+        if (reasonIndex >= reasons.length) {
+            reasonIndex = 0;
+            if (!hasFinished) {
+                hasFinished = true;
+                const finalBtn = document.getElementById('final-btn');
+                finalBtn.classList.remove('hidden');
+                finalBtn.style.animation = "slideUpFade 0.5s forwards"; 
+                instruction.innerHTML = "¡Has descubierto todas las razones! 💖";
+            }
+        }
+    }, 300);
+}
+
+// NIEVE DE FONDO
+function createSnowflake() {
+    const snowContainer = document.getElementById('snow-container');
+    const snowflake = document.createElement('div');
+    snowflake.classList.add('snowflake');
+    const flakeTypes = ['❄', '❅', '❆'];
+    snowflake.innerHTML = flakeTypes[Math.floor(Math.random() * flakeTypes.length)];
+    snowflake.style.left = Math.random() * 100 + 'vw';
+    snowflake.style.fontSize = (Math.random() * 15 + 8) + 'px';
+    snowflake.style.animationDuration = (Math.random() * 5 + 5) + 's';
+    snowContainer.appendChild(snowflake);
+    setTimeout(() => snowflake.remove(), 10000);
+}
+setInterval(createSnowflake, 150);
